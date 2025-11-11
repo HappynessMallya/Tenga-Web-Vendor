@@ -23,6 +23,7 @@ config.resolver.extraNodeModules = {
   tls: path.resolve(__dirname, 'web-mocks', 'tls.js'), // Stub for tls (not needed for web)
   fs: path.resolve(__dirname, 'web-mocks', 'fs.js'), // Stub for fs (not needed for web)
   path: path.resolve(__dirname, 'web-mocks', 'path.js'), // Stub for path (use path-browserify if needed)
+  '@': path.resolve(__dirname), // Path alias support for @/
 };
 
 module.exports = config;
