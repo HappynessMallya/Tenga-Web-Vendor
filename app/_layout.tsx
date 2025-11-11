@@ -1,6 +1,25 @@
 // Import URL polyfill for web compatibility (must be first)
 import 'react-native-url-polyfill/auto';
 
+// Polyfill TextEncoder/TextDecoder for web
+if (typeof global !== 'undefined') {
+  // Check if we're in a web/Node environment that needs polyfills
+  if (typeof (global as any).TextEncoder === 'undefined') {
+    const textEncoding = require('text-encoding');
+    (global as any).TextEncoder = textEncoding.TextEncoder;
+    (global as any).TextDecoder = textEncoding.TextDecoder;
+  }
+}
+
+// Also set it on window for browser environments
+if (typeof window !== 'undefined') {
+  if (typeof (window as any).TextEncoder === 'undefined') {
+    const textEncoding = require('text-encoding');
+    (window as any).TextEncoder = textEncoding.TextEncoder;
+    (window as any).TextDecoder = textEncoding.TextDecoder;
+  }
+}
+
 
 import { Inter_400Regular, Inter_600SemiBold, useFonts } from '@expo-google-fonts/inter';
 import FontAwesome from '@expo/vector-icons/FontAwesome';

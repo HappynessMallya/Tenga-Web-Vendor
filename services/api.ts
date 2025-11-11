@@ -96,7 +96,27 @@ API.interceptors.response.use(
     
     // Handle network errors
     if (!error.response) {
-      console.error('Network error:', error.message);
+      const isWeb = Platform.OS === 'web';
+      const isDev = (typeof __DEV__ !== 'undefined' && __DEV__) || process.env.NODE_ENV === 'development';
+      
+      if (isWeb && isDev) {
+        // Provide helpful error message for web dev
+        const proxyUrl = 'http://localhost:3001';
+        const errorMessage = `Network Error: Cannot connect to API. 
+        
+Please ensure the proxy server is running:
+1. Open a new terminal
+2. Run: npm run web:proxy
+3. Or run both together: npm run web:dev
+
+Proxy should be running at: ${proxyUrl}
+Original error: ${error.message}`;
+        
+        console.error('🌐 [Web Dev] Network Error:', errorMessage);
+        error.message = errorMessage;
+      } else {
+        console.error('Network error:', error.message);
+      }
     }
     
     return Promise.reject(error);

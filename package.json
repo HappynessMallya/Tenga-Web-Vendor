@@ -10,7 +10,8 @@
     "web:proxy": "node scripts/dev-proxy.js",
     "web:dev": "concurrently \"npm run web:proxy\" \"npm run web\"",
     "web:build": "expo export --platform web",
-    "build": "npm run web:build"
+    "build": "npm run web:build",
+    "postinstall": "npm rebuild lightningcss || true"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
@@ -48,18 +49,21 @@
     "react-native-web": "~0.19.6",
     "react-test-renderer": "18.2.0",
     "yup": "^1.7.1",
-    "zustand": "^5.0.8"
+    "zustand": "^5.0.8",
+    "dotenv": "^17.2.3"
   },
   "devDependencies": {
     "@types/react": "~18.2.45",
+    "@types/text-encoding": "^0.0.40",
     "assert": "^2.1.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "concurrently": "^8.2.2",
-    "dotenv": "^17.2.3",
+    "crypto-browserify": "^3.12.1",
     "eslint": "^9.35.0",
     "eslint-config-universe": "^15.0.3",
     "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "prettier": "^3.6.2",
     "react-native-crypto": "^2.2.1",
@@ -67,6 +71,7 @@
     "readable-stream": "^4.7.0",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
+    "text-encoding": "^0.7.0",
     "tty-browserify": "^0.0.1",
     "typescript": "~5.9.2",
     "url": "^0.11.4",

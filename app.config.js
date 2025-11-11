@@ -1,5 +1,4 @@
-require('dotenv/config');
-
+// Don't import dotenv/config - Vercel handles env vars automatically
 export default ({ config }) => ({
   ...config,
   expo: {
@@ -31,10 +30,8 @@ export default ({ config }) => ({
     },
     web: {
       bundler: "metro",
-      output: "static",
-      favicon: "./assets/images/favicon.png",
-      // Disable SSR to avoid Node.js module issues
-      ssr: false
+      output: "single", // Single page app (disables SSG/SSR)
+      favicon: "./assets/images/favicon.png"
     },
     experiments: {
       typedRoutes: true
